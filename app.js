@@ -1,8 +1,14 @@
 const express = require('express');
 const app = express();
+const ejs = require('ejs');
 
+// MIDDLEWARE
+app.use(express.static('public'));
+
+//TEMPLATE ENGINE
+app.set('view engine', 'ejs');
 app.get('/', (req, res) => {
-  res.send({ id: 1, title: 'Blog Title', desc: 'Blog Description' });
+  res.render('index');
 });
 
 const PORT = 3000;

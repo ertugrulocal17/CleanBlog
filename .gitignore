@@ -1,7 +1,6 @@
 vendor/
 img/
 scss/
-
 # Logs
 logs
 *.log
