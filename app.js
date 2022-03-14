@@ -3,6 +3,7 @@ const app = express();
 const ejs = require('ejs');
 const mongoose = require('mongoose');
 const Post = require('./models/Post');
+const { render } = require('express/lib/response');
 // MIDDLEWARE
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
@@ -27,6 +28,13 @@ app.get('/add_post', (req, res) => {
 app.post('/posts', async (req, res) => {
   await Post.create(req.body);
   res.redirect('/');
+});
+
+app.get('/posts/:id', async (req, res) => {
+  const post = await Post.findById(req.params.id);
+  res.render('post', {
+    post: post,
+  });
 });
 
 const PORT = 3000;
